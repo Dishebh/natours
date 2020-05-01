@@ -24,9 +24,9 @@ const createSendToken = (user, statusCode, res) => {
 
   res.cookie('jwt', token, cookieOptions);
 
-  res.header({ 'Set-Cookie': `jwt=${token}` });
-
-  console.log('COOKIES: ', res.cookies);
+  // res.header({ 'Set-Cookie': `jwt=${token}` });
+  //
+  // console.log('COOKIES: ', res.cookies);
   // Remove password from output
   user.password = undefined;
 
@@ -48,7 +48,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log(url);
+  // console.log(url);
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
@@ -232,7 +232,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
   const user = await User.findById(req.user.id).select('+password');
 
-  console.log('UPDATING PASSWORD: ', user);
+  // console.log('UPDATING PASSWORD: ', user);
 
   // 2) Check if POSTed current password is correct
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {

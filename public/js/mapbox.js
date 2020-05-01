@@ -1,5 +1,5 @@
 export const displayMap = locations => {
-  console.log('welcome to the map!!!');
+  // console.log('welcome to the map!!!');
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiZGlzaGViaCIsImEiOiJjazlmc3Z1bmUwZ21lM3FudXFqOWVlODdwIn0.8YsrTHzK45WOmMwgALcN8Q';
 
