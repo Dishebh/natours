@@ -19,7 +19,9 @@ const bookingRouter = require('./routes/bookingRoutes');
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: 'https://natours-dishebh.herokuapp.com' }));
+app.enable('trust proxy');
+
+// app.use(cors({ credentials: true, origin: 'https://natours-dishebh.herokuapp.com' }));
 
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
