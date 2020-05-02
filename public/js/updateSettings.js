@@ -12,8 +12,8 @@ export const updateSettings = async (data, type) => {
     const res = await axios({
       method: 'PATCH',
       url,
-      data,
-      withCredentials: true
+      data
+      // withCredentials: true
     });
 
     if (res.data.status === 'success') {

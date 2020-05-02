@@ -10,9 +10,9 @@ export const login = async (email, password) => {
       data: {
         email,
         password
-      },
-      withCredentials: true,
-      credentials: 'include'
+      }
+      // withCredentials: true,
+      // credentials: 'include'
     });
 
     if (res.data.status === 'success') {
