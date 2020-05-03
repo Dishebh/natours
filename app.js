@@ -26,6 +26,12 @@ app.enable('trust proxy');
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
+// 1) GLOBAL MIDDLEWARES
+// implement CORS
+app.use(cors());
+
+app.options('*', cors());
+
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
