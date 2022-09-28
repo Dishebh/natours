@@ -1,0 +1,29 @@
+#!/bin/bash
+
+COMMIT_FILE=$1
+COMMIT_MSG=$(cat $1)
+COMMIT_SUMMARY=$(echo "$COMMIT_MSG" | head -1)
+COMMIT_DESCRIPTION=$(echo "$COMMIT_MSG" | tail -n +2)
+
+add_link_to_jira_ticket() {
+  JIRA_TICKET=$(echo "$COMMIT_SUMMARY" | cut -d ' ' -f 1)
+  JIRA_LINK="https://goldcast.atlassian.net/browse/$JIRA_TICKET"
+
+  if grep -q "$JIRA_TICKET" <<<"$COMMIT_DESCRIPTION"; then
+    return
+  fi
+
+  COMMIT_DESCRIPTION="JIRA TICKET: $JIRA_LINK\n$COMMIT_DESCRIPTION\n"
+
+  NEW_MSG="$COMMIT_SUMMARY\n\n$COMMIT_DESCRIPTION"
+
+  printf "$NEW_MSG" >"$COMMIT_FILE"
+
+  printf "[commit-msg] JIRA ticket added to commit message\n\n"
+}
+
+main() {
+  add_link_to_jira_ticket
+}
+
+main
